@@ -10,14 +10,14 @@ public class Exercise1 : MonoBehaviour
     //And create a variable to track it
     private GameObject walkerGO;
     //And then we need to be able to access the walker Component on our walkerGO (Walker Game Object)
-    private walker walker;
+    private walkerDR walker;
 
 
     // Start is called before the first frame update
     void Start()
     {
         GameObject walkerGameObject = new GameObject();
-        walker = walkerGameObject.AddComponent<walker>();
+        walker = walkerGameObject.AddComponent<walkerDR>();
     }
 
     // Update is called once per frame
@@ -33,7 +33,7 @@ public class Exercise1 : MonoBehaviour
 }
 
 
-public class walker : MonoBehaviour
+public class walkerDR : MonoBehaviour
 {
 
     public int x;
@@ -62,15 +62,15 @@ public class walker : MonoBehaviour
     {
                 //Each frame choose a new Random number 0-1;
                 //If the number is less than the the float take a step
-                if (num < 0.4F)
+                if (num < 0.6F)
             {
                     x++;
                 }
-                else if (num < 0.6F)
+                else if (num < 0.4F)
             {
                     x--;
                 }
-                else if (num < .4F)
+                else if (num < .6F)
             {
                     y++;
                 }

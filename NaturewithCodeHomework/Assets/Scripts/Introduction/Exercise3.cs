@@ -10,14 +10,14 @@ public class Exercise3 : MonoBehaviour
     //And create a variable to track it
     private GameObject walkerGO;
     //And then we need to be able to access the walker Component on our walkerGO (Walker Game Object)
-    private walker walker;
+    private walker50 walker;
 
 
     // Start is called before the first frame update
     void Start()
     {
         GameObject walkerGameObject = new GameObject();
-        walker = walkerGameObject.AddComponent<walker>();
+        walker = walkerGameObject.AddComponent<walker50>();
     }
 
     // Update is called once per frame
@@ -33,13 +33,14 @@ public class Exercise3 : MonoBehaviour
 }
 
 
-public class walker : MonoBehaviour
+public class walker50 : MonoBehaviour
 {
 
     public int x;
     public int y;
     float num;
     GameObject walkerGO;
+    float newX, newY, newNegX, newNegY; // stores new probability for step() x and y values
 
     // Start is called before the first frame update
     void Start()
@@ -50,36 +51,42 @@ public class walker : MonoBehaviour
 
         x = 0;
         y = 0;
+
     }
 
     // Update is called once per frame
     void Update()
     {
       num = Random.Range(0f, 1f);
+      newX = Random.Range(0f, 1f);
+      newY = Random.Range(0f, 1f);
+      newNegX = Random.Range(0f, 1f);
+      newNegY = Random.Range(0f, 1f);
     }
 
     public void step()
     {
-                //Each frame choose a new Random number 0-1;
-                //If the number is less than the the float take a step
-                if (num < 0.4F)
-            {
-                    x++;
-                }
-                else if (num < 0.6F)
-            {
-                    x--;
-                }
-                else if (num < .4F)
-            {
-                    y++;
-                }
-                else
-                {
-                    y--;
-                }
-                walkerGO.transform.position = new Vector3(x, y, 0F);
-            }
+      //Each frame choose a new Random number 0-1;
+      //If the number is less than the the float take a step
+      if (num < newX)
+      {
+        x++;
+      }
+      if (num < newNegX)
+      {
+        x--;
+      }
+      if (num < newY)
+      {
+        y++;
+      }
+      if (num < newNegY)
+      {
+        y--;
+      }
+      walkerGO.transform.position = new Vector3(x, y, 0F);
+
+      }
 
     //Now let's draw the path of the Mover by creating spheres in its position in the most recent frame.
     public void draw()
